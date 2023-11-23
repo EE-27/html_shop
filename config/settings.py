@@ -74,10 +74,10 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',  # psql -U postgres
-        'NAME': "html_shop",  # CREATE DATABASE  html_shop;
-        "USER": "postgres",  # \q
-        "PASSWORD": "12345"
+        'ENGINE': 'django.db.backends.postgresql',  # psql -U postgres -- zapnout postgres
+        'NAME': "html_shop",  # CREATE DATABASE  html_shop; -- vytvořit db
+        "USER": "postgres",  # \q -- vypnout posgres
+        "PASSWORD": "12345"  # py manage.py migrate -- udělat migraci
     }
 }
 
