@@ -2,13 +2,6 @@ from django.db import models
 
 # Create your models here.
 """
-Task 1
-Create a new controller and template that will be responsible for displaying a separate product 
-page. You need to display all the information about the product on the product page.
-
-Use Bootstrap UI kit to create templates. If you encounter any problems, use this template as a 
-basis.
-
 Task 2
 In the previously created template for the main page, output the list of products in a loop. For 
 consistency of the displayed cards, cut the displayed description after the first 100 characters.
