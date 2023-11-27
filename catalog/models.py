@@ -2,16 +2,44 @@ from django.db import models
 
 # Create your models here.
 """
-Task 2 In the catalogue application, create models:
+Task 1
+Create a new controller and template that will be responsible for displaying a separate product 
+page. You need to display all the information about the product on the product page.
 
-Product, Category.
+Use Bootstrap UI kit to create templates. If you encounter any problems, use this template as a 
+basis.
 
-Describe the initial settings for them.
+Task 2
+In the previously created template for the main page, output the list of products in a loop. For 
+consistency of the displayed cards, cut the displayed description after the first 100 characters.
 
-Task 3 For each model, describe the following fields:
+Task 3
+Due to the expansion of the number of templates, there is too much repetitive code, so allocate 
+a common (basic) template and also a sub-template with the main menu.
 
-Product: name, description, image (preview), category, price per piece, creation date,
- last modified date. Category: name, description.
+If necessary, you can select more common templates.
+
+Task 4
+For the displayed image on the page, implement a template filter that converts the passed path 
+to the full path to access the media file:
+
+<!-- Source --> 
+<img src="/media/{{{ object.image }}}" />
+<!-- Final version -->
+<img src="{{ object.image|mediapath }}" /> />
+
+Implement the described functionality using a template tag:
+
+<!-- Source variant -->
+<img src="/media/{{ object.image }}}" />
+<!-- Final version -->
+<img src="{% mediapath object.image %}" /> />
+
+* Optional task
+Add functionality to create a product via front-end without using the standard admin.
+Implement page-by-page output of the product list.
+
+Translated with www.DeepL.com/Translator (free version)
 """
 
 
