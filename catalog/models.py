@@ -2,9 +2,6 @@ from django.db import models
 
 # Create your models here.
 """
-Task 2
-In the previously created template for the main page, output the list of products in a loop. For 
-consistency of the displayed cards, cut the displayed description after the first 100 characters.
 
 Task 3
 Due to the expansion of the number of templates, there is too much repetitive code, so allocate 

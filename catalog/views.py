@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 from catalog.models import Product
 
@@ -7,6 +7,9 @@ from catalog.models import Product
 
 def index(request):
     return render(request, 'catalog/index.html')
+
+def base(request):
+    return render(request, 'catalog/base.html')
 
 
 def contacts(request):
@@ -23,3 +26,10 @@ def album(request):
         "object_list":product_list
     }
     return render(request, 'catalog/album.html', context)
+
+def code_detail(request, pk):
+    product = get_object_or_404(Product, pk=pk)
+    context = {
+        'product': product
+    }
+    return render(request, 'catalog/code_detail.html', context)
