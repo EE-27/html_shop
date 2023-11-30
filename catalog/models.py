@@ -3,11 +3,6 @@ from django.db import models
 # Create your models here.
 """
 
-Task 3
-Due to the expansion of the number of templates, there is too much repetitive code, so allocate 
-a common (basic) template and also a sub-template with the main menu.
-
-If necessary, you can select more common templates.
 
 Task 4
 For the displayed image on the page, implement a template filter that converts the passed path 

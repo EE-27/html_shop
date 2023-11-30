@@ -9,5 +9,5 @@ urlpatterns = [
                   path("", index),
                   path('contacts/', contacts, name='contacts'),
                   path('album/', album, name='album'),
-                  path('item/<int:pk>/', code_detail, name='code_detail'),
+                  path('album/<int:pk>/', code_detail, name='code_detail'),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

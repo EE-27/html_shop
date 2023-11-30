@@ -1,0 +1,20 @@
+{% extends 'catalog/base.html' %}
+{% load static %}
+
+{% block content %}
+<div style="background-color: #f4f4f4; padding: 15px; border-radius: 8px;">
+    <div class="news-tables">
+        <div class="news-table">
+            <div class="container">
+                <div class="col-sm-8 col-md-7 py-4">
+                    <div class="sidebar_item">
+                        <h3>{{ product.name }}</h3>
+                        <h4>{{ product.price_per_piece }}</h4>
+                        <p>{{ product.description }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
