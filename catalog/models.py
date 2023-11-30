@@ -9,7 +9,8 @@ Task 2 Create a new blog post model with the following fields:
 
 title, 
 slug (implement via CharField), 
-content, preview (image), 
+content, 
+preview (image), 
 creation date, 
 publication sign, 
 number of views. 
@@ -69,3 +70,13 @@ class Category(models.Model):
         verbose_name = "Category"
         verbose_name_plural = "Categories"
         ordering = ("name",)
+
+class BlogPost(models.Model):
+    title = models.CharField(max_length=100, verbose_name="Title")
+    slug = models.CharField(max_length=1024, verbose_name="Slug")
+    content = models.TextField(verbose_name="Content")
+    preview = models.ImageField(verbose_name="Preview", null=True, blank=True)
+    creation_date = models.DateField(verbose_name="Creation Date")
+    publication_sign = models.BooleanField(default=False, verbose_name="Publication sign")
+    number_of_views = models.PositiveIntegerField(default=0, verbose_name="Number of Views")
+    # edn heeree no migration yes 10:21

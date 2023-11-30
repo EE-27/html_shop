@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'catalog',
+    "catalog.templatetags",
 
 ]
 
@@ -103,7 +104,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us' # <- tady se dají měnit jazyky
+LANGUAGE_CODE = 'en-us'  # <- tady se dají měnit jazyky
 
 TIME_ZONE = 'UTC'
 

@@ -1,5 +1,5 @@
 {% load static %}
-{% load media_filters %}
+{% load mediapath %}
 <!doctype html>
 <html lang="en">
 <head>
@@ -11,6 +11,10 @@
 <body>
 
 {% include 'catalog/button_menu.html' %}
+<center>
+<img src="{% static 'img/heart.png' %}" alt="Heart Image" class="img-fluid">
+    <img src="{% mediapath 'rs.png' %}" />
+</center>
 
 
 <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
@@ -22,6 +26,7 @@
 
 
 {% endblock %}
+
 <script src="{% static 'js/bootstrap.min.js' %}"></script>
 </body>
 </html>
