@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView
 
-from catalog.models import Product
+from catalog.models import Product, BlogPost
 
 
 # Create your views here.
@@ -46,3 +46,8 @@ class AlbumListView(ListView):
 class CodeDetailView(DetailView):
     model = Product
     template_name = 'catalog/code_detail.html'
+
+
+class BlogPostView(ListView):
+    model = BlogPost
+    template_name = 'catalog/blog_post.html'

@@ -5,24 +5,7 @@ from django.db import models
 
 
 
-Task 2 Create a new blog post model with the following fields:
 
-title, 
-slug (implement via CharField), 
-content, 
-preview (image), 
-creation date, 
-publication sign, 
-number of views. 
-
-Implement a CRUD for the new model to work with the blog.
---Slug - a human-understandable URL, is a set of characters that can be read as coherent words or 
---sentences in the address bar, serves as a unique record identifier within a single model and consists 
---of characters that are safe for query processing:
-
-0-9 ,
-a-z (usually lower case), 
-character - .
 
 Task 3 Modify the output and query processing by adding the following logic at the controller level:
 
@@ -73,10 +56,16 @@ class Category(models.Model):
 
 class BlogPost(models.Model):
     title = models.CharField(max_length=100, verbose_name="Title")
-    slug = models.CharField(max_length=1024, verbose_name="Slug")
+    slug = models.CharField(max_length=100, verbose_name="Slug")
     content = models.TextField(verbose_name="Content")
     preview = models.ImageField(verbose_name="Preview", null=True, blank=True)
     creation_date = models.DateField(verbose_name="Creation Date")
     publication_sign = models.BooleanField(default=False, verbose_name="Publication sign")
     number_of_views = models.PositiveIntegerField(default=0, verbose_name="Number of Views")
-    # edn heeree no migration yes 10:21
+
+    def __str__(self):
+        return f"{self.title}"
+
+    class Meta:
+        verbose_name = "Blog post"
+        verbose_name_plural = "Blog posts"
