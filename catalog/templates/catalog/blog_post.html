@@ -120,16 +120,18 @@
         {% for object in object_list%}
         <div class="col-md-8 blog-main">
             <h3 class="pb-3 mb-4 font-italic border-bottom">
-                {{ object }}
+                {{ object.title }}
             </h3>
 
             <div class="blog-post">
-                <h2 class="blog-post-title">{{ object }}</h2>
+                <h2 class="blog-post-title">{{ object.title }}</h2>
                 <p class="blog-post-meta">{{ object.creation_date }} <a href="#">Q</a></p>
-
                 <p>{{ object.content }}</p>
             </div>
 
+            <div class="btn-group">
+                <a href="{% url 'blog_detail' pk=object.pk %}" class="btn btn-sm btn-outline-secondary">View</a>
+            </div>
         </div><!-- /.blog-main -->
         {% endfor %}
         <aside class="col-md-4 blog-sidebar">

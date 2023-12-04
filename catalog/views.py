@@ -67,3 +67,8 @@ class BlogPostCreateView(CreateView):
 
     def get_success_url(self):
         return reverse('blog_post')
+
+
+class BlogPostDetailView(DetailView):
+    model = BlogPost
+    template_name = 'catalog/blog_detail.html'
