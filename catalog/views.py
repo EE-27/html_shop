@@ -72,3 +72,9 @@ class BlogPostCreateView(CreateView):
 class BlogPostDetailView(DetailView):
     model = BlogPost
     template_name = 'catalog/blog_detail.html'
+
+    def get_object(self, queryset=None):
+        self.object = super().get_object(queryset)
+        self.object.number_of_views += 1
+        self.object.save()
+        return self.object
