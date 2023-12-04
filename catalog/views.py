@@ -1,5 +1,7 @@
 from django.shortcuts import render, get_object_or_404
-from django.views.generic import ListView, DetailView
+from django.urls import reverse
+from django.utils import timezone
+from django.views.generic import ListView, DetailView, CreateView
 
 from catalog.models import Product, BlogPost
 
@@ -51,3 +53,17 @@ class CodeDetailView(DetailView):
 class BlogPostView(ListView):
     model = BlogPost
     template_name = 'catalog/blog_post.html'
+
+
+class BlogPostCreateView(CreateView):
+    model = BlogPost
+    fields = ('title', 'content')
+    template_name = 'catalog/blog_create.html'
+
+    def form_valid(self, form):
+        # Set the creation_date to the current date
+        form.instance.creation_date = timezone.now().date()
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse('blog_post')
