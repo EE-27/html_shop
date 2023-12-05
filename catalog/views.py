@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.utils import timezone
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 from catalog.models import Product, BlogPost
 
@@ -78,3 +78,15 @@ class BlogPostDetailView(DetailView):
         self.object.number_of_views += 1
         self.object.save()
         return self.object
+
+class BlogPostUpdateView(UpdateView):
+    model = BlogPost
+    fields = ('title', 'content')
+    template_name = 'catalog/blog_create.html'
+
+    def get_success_url(self):
+        return reverse('blog_post')
+
+class BlogPostDelete(DeleteView):
+    model = BlogPost
+    success_url = reverse_lazy('blog_post')

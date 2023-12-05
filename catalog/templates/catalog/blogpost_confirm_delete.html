@@ -1,0 +1,17 @@
+{% extends 'catalog/blog_post.html' %}
+{% load static %}
+
+{% block content %}
+
+<h1 xmlns:delete="http://www.w3.org/1999/xhtml">Delete:</h1>
+<p></p>
+
+ <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <p Do you want to delete: {{ object.title }}</p>
+     <button type="submit" class="btn btn-danger">Confirm</button>
+     <a href="{% url 'blog_post' %}" class="btn btn-warning">Back</a>
+  </form>
+
+{% endblock %}
