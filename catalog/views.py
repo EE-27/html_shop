@@ -3,6 +3,7 @@ from django.urls import reverse, reverse_lazy
 from django.utils import timezone
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
+from catalog.forms import ProductForm
 from catalog.models import Product, BlogPost
 
 
@@ -10,6 +11,23 @@ from catalog.models import Product, BlogPost
 
 def index(request):
     return render(request, 'catalog/index.html')
+
+
+class ProductUpdateView(UpdateView):
+    model = Product
+    form_class = ProductForm
+
+    def get_success_url(self):
+        return reverse('album')
+
+
+class ProductCreateView(CreateView):
+    model = Product
+    form_class = ProductForm
+    template_name = 'catalog/product_form.html'
+
+    def get_success_url(self):
+        return reverse('album')
 
 
 def base(request):
@@ -79,6 +97,7 @@ class BlogPostDetailView(DetailView):
         self.object.save()
         return self.object
 
+
 class BlogPostUpdateView(UpdateView):
     model = BlogPost
     fields = ('title', 'content')
@@ -86,6 +105,7 @@ class BlogPostUpdateView(UpdateView):
 
     def get_success_url(self):
         return reverse('blog_post')
+
 
 class BlogPostDelete(DeleteView):
     model = BlogPost
