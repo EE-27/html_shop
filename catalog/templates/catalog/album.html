@@ -78,10 +78,9 @@
         <div class="container">
 
             <div class="row">
-                {% for object in object_list%}
+                {% for object in object_list %}
                 <div class="col-md-4">
                     <div class="card mb-4 box-shadow">
-
                         <div class="card-body">
                             <p class="card-text">{{ object }}<br><br>
                                 <small class="text-muted">description:</small><br>
@@ -91,13 +90,20 @@
                                 {{ object.description }}
                                 {% endif %}
                             </p>
+
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
                                     <a href="/album/{{ object.pk }}/" class="btn btn-sm btn-outline-secondary">View</a>
-                                    <a href="/album_form/{{ object.pk }}/" class="btn btn-sm btn-outline-secondary">Edit</a>
+                                    <a href="/album_form/{{ object.pk }}/"
+                                       class="btn btn-sm btn-outline-secondary">Edit</a>
                                     <a href="/create_product/" class="btn btn-sm btn-outline-secondary">Create</a>
                                 </div>
-                                <small class="text-muted">9 mins</small>
+                                {% for version in object.versions.all %}
+                                <small class="text-muted">V_{{ version.version_number }}: {{ version.version_name }}</small>
+                                {% if version.is_active %}
+                                <small class="text-muted">(active)</small>
+                                {% endif %}
+                                {% endfor %}
                             </div>
                         </div>
                     </div>

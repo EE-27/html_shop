@@ -2,23 +2,10 @@ from django.db import models
 
 # Create your models here.
 """
+Add a new model "Version", which should contain the following fields:
 
-
-
-
-
-Task 3 Modify the output and query processing by adding the following logic at the controller level:
-
-when opening an individual article, 
-increase the view counter; 
-display in the list of articles only those that have a positive publication sign; 
-when creating, dynamically generate a slug name for the title; 
-after successfully editing an entry, redirect the user to view that article. 
-
-* Additional task When an article reaches 100 views, send yourself an email 
-congratulating yourself on the achievement.
-
-Note: we recommend using the Yandex mail service to send emails.
+product, version number, version name, current version attribute. 
+If there is an active version, implement output of information about the active version to the product list.
 """
 
 
@@ -42,6 +29,24 @@ class Product(models.Model):
         ordering = ("name",)
 
 
+class Version(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='versions', verbose_name="Product")
+    version_number = models.IntegerField(verbose_name="Version Number")
+    version_name = models.CharField(max_length=100, verbose_name="Version Name")
+    current_version = models.BooleanField(verbose_name="Current Version")
+
+    def __str__(self):
+        return f"{self.product.name} - Version {self.version_number} ({self.version_name})"
+
+    class Meta:
+        verbose_name = "Version"
+        verbose_name_plural = "Versions"
+
+    @property
+    def is_active(self):
+        return self.current_version
+
+
 class Category(models.Model):
     name = models.CharField(max_length=100, verbose_name="Name")
     description = models.CharField(max_length=255, verbose_name="Description")
@@ -53,6 +58,7 @@ class Category(models.Model):
         verbose_name = "Category"
         verbose_name_plural = "Categories"
         ordering = ("name",)
+
 
 class BlogPost(models.Model):
     title = models.CharField(max_length=100, verbose_name="Title")

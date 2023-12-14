@@ -1,10 +1,25 @@
 {% extends 'catalog/base.html' %}
 {% load static %}
+{% load crispy_forms_tags %}
 
 {% block content %}
 <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button class="btn btn-primary" type="submit">Save</button>
+    <div class="col-6">
+        <div class="card">
+
+
+            {% csrf_token %}
+            {% crispy form %}
+            {{ form.as_p }}
+            <button class="btn btn-primary" type="submit">Save</button>
+        </div>
+        <div class="card">
+            {{ formset.management_form }}
+            {% for form in formset.forms %}
+            {% crispy form %}
+            {{ form.as_p }}
+            {% endfor %}
+        </div>
+    </div>
 </form>
 {% endblock %}
