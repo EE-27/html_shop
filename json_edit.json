@@ -1,0 +1,56 @@
+[
+  {
+    "model": "catalog.product",
+    "pk": 1,
+    "fields": {
+      "name": "html code",
+      "description": "A html code of your choosing.",
+      "image": "hey.png",
+      "category": "Code",
+      "price_per_piece": 100001411,
+      "creation_date": "2023-12-11"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 2,
+    "fields": {
+      "name": "Python code",
+      "description": "A Python code of your choosing.",
+      "image": "jigsaw.png",
+      "category": "Code",
+      "price_per_piece": 20000,
+      "creation_date": "2023-12-01"
+    }
+  },
+  {
+    "model": "catalog.version",
+    "pk": 1,
+    "fields": {
+      "product": 1,
+      "version_number": 2,
+      "version_name": "herr_",
+      "current_version": true
+    }
+  },
+  {
+    "model": "catalog.version",
+    "pk": 2,
+    "fields": {
+      "product": 2,
+      "version_number": 1,
+      "version_name": "mng_anus",
+      "current_version": false
+    }
+  },
+  {
+    "model": "catalog.version",
+    "pk": 3,
+    "fields": {
+      "product": 2,
+      "version_number": 2,
+      "version_name": "fu_anus",
+      "current_version": true
+    }
+  }
+]
