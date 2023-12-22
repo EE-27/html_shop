@@ -16,7 +16,7 @@ class User(AbstractUser):
     phone = models.CharField(max_length=24, verbose_name="Phone", null=True, blank=True)
     avatar = models.ImageField(upload_to="users/", verbose_name="Avatar", null=True, blank=True)
     citizenship = models.CharField(max_length=10, verbose_name="Where are you from?", choices=CITIZENSHIP)
-
+    groups = models.ManyToManyField('auth.Group', blank=True, related_name='user_groups', verbose_name='Groups')
     username = None
     email = models.EmailField(unique=True, verbose_name="Mail")
 

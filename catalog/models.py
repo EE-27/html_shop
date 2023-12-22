@@ -1,3 +1,5 @@
+from django.core.exceptions import PermissionDenied
+
 from config import settings
 from django.db import models
 
@@ -21,10 +23,20 @@ class Product(models.Model):
     price_per_piece = models.IntegerField(verbose_name="Price per Piece")
     creation_date = models.DateField(verbose_name="Creation Date")
 
+    is_published = models.BooleanField(default=False, verbose_name="Published")
+
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True)
 
     def __str__(self):
         return f"{self.name}"
+
+    def save(self, *args, **kwargs):
+        # Check if the user is the owner
+        user = kwargs.pop('user', None)
+        if user and user != self.owner:
+            raise PermissionDenied("You do not have permission to edit this product.")
+
+        super().save(*args, **kwargs)
 
     class Meta:
         verbose_name = "Product"

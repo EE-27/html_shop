@@ -1,3 +1,4 @@
+from django.core.exceptions import PermissionDenied
 from django.forms import inlineformset_factory
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse, reverse_lazy
@@ -32,6 +33,8 @@ class ProductUpdateView(UpdateView):
         return context_data
 
     def form_valid(self, form):
+        if form.instance.owner != self.request.user:
+            raise PermissionDenied("You do not have permission to edit this product.")
         formset = self.get_context_data()["formset"]
         self.object = form.save()
         if formset.is_valid():
