@@ -10,14 +10,14 @@
 
             {% csrf_token %}
             {% crispy form %}
-            {{ form.as_p }}
+
             <button class="btn btn-primary" type="submit">Save</button>
         </div>
         <div class="card">
             {{ formset.management_form }}
             {% for form in formset.forms %}
             {% crispy form %}
-            {{ form.as_p }}
+
             {% endfor %}
         </div>
     </div>
