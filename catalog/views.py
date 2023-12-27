@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import PermissionDenied
 from django.forms import inlineformset_factory
 from django.shortcuts import render, get_object_or_404
@@ -15,9 +16,10 @@ def index(request):
     return render(request, 'catalog/index.html')
 
 
-class ProductUpdateView(UpdateView):
+class ProductUpdateView(LoginRequiredMixin, UpdateView):
     model = Product
     form_class = ProductForm
+    login_url = "/users/"
 
     def get_success_url(self):
         return reverse('album')
@@ -44,13 +46,15 @@ class ProductUpdateView(UpdateView):
         return super().form_valid(form)
 
 
-class ProductCreateView(CreateView):
+class ProductCreateView(LoginRequiredMixin, CreateView):
     model = Product
     form_class = ProductForm
     template_name = 'catalog/product_form.html'
+    login_url = "/users/"
 
     def get_success_url(self):
         return reverse('album')
+
 
 
 def base(request):
