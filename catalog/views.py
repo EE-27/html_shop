@@ -7,13 +7,22 @@ from django.utils import timezone
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 from catalog.forms import ProductForm, VersionForm
-from catalog.models import Product, BlogPost, Version
+from catalog.models import Product, BlogPost, Version, Category
+from catalog.service import CategoryService
 
 
 # Create your views here.
 
 def index(request):
     return render(request, 'catalog/index.html')
+
+
+class CategoryListView(ListView):
+    model = Category
+    template_name = "catalog/category_list.html"
+
+    def get_queryset(self):
+        return CategoryService.cache_example()
 
 
 class ProductUpdateView(LoginRequiredMixin, UpdateView):
@@ -54,7 +63,6 @@ class ProductCreateView(LoginRequiredMixin, CreateView):
 
     def get_success_url(self):
         return reverse('album')
-
 
 
 def base(request):

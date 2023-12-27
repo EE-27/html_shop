@@ -11,15 +11,16 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 import os
 from pathlib import Path
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+load_dotenv(BASE_DIR / ".env")
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-a!us6+uypqv%o1=hqymn*5ljw9n+)c1k!5!&!sjouon*=wik@_'
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -82,8 +83,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',  # psql -U postgres -- zapnout postgres
         'NAME': "html_shop",  # CREATE DATABASE  html_shop; -- vytvořit db
-        "USER": "postgres",  # \q -- vypnout posgres
-        "PASSWORD": "12345"  # py manage.py migrate -- udělat migraci
+        "USER": os.getenv("USER_DB"),  # \q -- vypnout posgres
+        "PASSWORD": os.getenv("PASSWORD_DB")  # py manage.py migrate -- udělat migraci
     }
 }
 
@@ -139,9 +140,17 @@ AUTH_USER_MODEL = "users.User"
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"
 
+EMAIL_HOST = os.getenv("EMAIL_HOST")
+EMAIL_PORT = os.getenv("EMAIL_PORT")
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
+EMAIL_USE_TLS = os.getenv("EMAIL_USE_TLS")
 
-EMAIL_HOST = 'smtp.yandex.com'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'project.skypro@yandex.ru'
-EMAIL_HOST_PASSWORD = 'zjkibdkpeflxlouk'
-EMAIL_USE_TLS = True
+CACHE_ENABLED = os.getenv("CACHE_ENABLED")
+if CACHE_ENABLED:
+    CACHES = {
+        "default": {
+            "BACKEND": "django.core.cache.backends.redis.RedisCache",
+            "LOCATION": os.getenv("CACHE_LOCATION"),  # nezapomenout si zpustit redis-server
+        }
+    }
